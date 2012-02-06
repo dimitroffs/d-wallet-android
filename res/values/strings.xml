@@ -5,7 +5,10 @@
     <string name="app_name">d-wallet</string>
     <string name="btn_login">Login</string>
     <string name="btn_reg">Register</string>
+    <string name="btn_logout">Logout</string>
     <string name="lbl_email">E-mail</string>
     <string name="lbl_passwd">Password</string>
+    <string name="btn_ok">OK</string>
+    <string name="msg_loading">Loading...</string>
 
 </resources>
