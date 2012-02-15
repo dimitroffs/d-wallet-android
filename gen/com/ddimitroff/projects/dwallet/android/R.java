@@ -35,5 +35,6 @@ public final class R {
         public static final int lbl_email=0x7f040005;
         public static final int lbl_passwd=0x7f040006;
         public static final int msg_loading=0x7f040008;
+        public static final int no_connection=0x7f040009;
     }
 }
