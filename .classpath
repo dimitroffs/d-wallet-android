@@ -4,8 +4,8 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="lib" path="lib/d-wallet-core-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-core-asl-1.9.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-mapper-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="libs/d-wallet-core-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-core-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-mapper-asl-1.9.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

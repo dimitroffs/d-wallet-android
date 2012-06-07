@@ -7,17 +7,16 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.ddimitroff.projects.dwallet.rest.token.TokenRO;
-import com.ddimitroff.projects.dwallet.rest.user.UserRO;
 
-public class DWalletTask extends AsyncTask<UserRO, Void, TokenRO> {
+public class DWalletLogoutTask extends AsyncTask<TokenRO, Void, Boolean> {
 
-	public static final String TAG = "D-Wallet-Task";
+	public static final String TAG = "D-Wallet-Logout-Task";
 
 	private ProgressDialog dialog = null;
 	private Context context = null;
 	private AlertDialog.Builder alert = null;
 
-	public DWalletTask(Context ctx) {
+	public DWalletLogoutTask(Context ctx) {
 		this.context = ctx;
 		alert = new AlertDialog.Builder(context);
 		alert.setTitle(R.string.app_name);
@@ -31,10 +30,10 @@ public class DWalletTask extends AsyncTask<UserRO, Void, TokenRO> {
 	}
 
 	@Override
-	protected TokenRO doInBackground(UserRO... user) {
-		TokenRO output = DWalletRestClient.loginUser(user[0]);
+	protected Boolean doInBackground(TokenRO... token) {
+		Boolean output = DWalletRestClient.logoutUser(token[0]);
 		Log.i(TAG, output.toString());
-		Log.i(TAG, "logout? " + DWalletRestClient.logoutUser(output));
+
 		return output;
 	}
 
@@ -45,9 +44,16 @@ public class DWalletTask extends AsyncTask<UserRO, Void, TokenRO> {
 	}
 
 	@Override
-	protected void onPostExecute(TokenRO token) {
+	protected void onPostExecute(Boolean successLogout) {
 		dialog.dismiss();
-		alert.setMessage("Well done! tokenId: " + token.getTokenId());
+		if (successLogout) {
+			alert.setMessage("You have successfully logged out from application.");
+
+			DWalletAndroidSession.get().invalidate();
+		} else {
+			alert.setMessage("Unable to log out from application. Please check the logs.");
+		}
+
 		alert.show();
 	}
 

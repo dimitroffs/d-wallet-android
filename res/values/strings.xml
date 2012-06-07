@@ -9,7 +9,8 @@
     <string name="lbl_email">E-mail</string>
     <string name="lbl_passwd">Password</string>
     <string name="btn_ok">OK</string>
-    <string name="msg_loading">Loading...</string>
+    <string name="msg_loading">Loading..</string>
     <string name="no_connection">No Internet connection. Please connect it!</string>
+    <string name="no_token">Unable to find token in session!</string>
 
 </resources>

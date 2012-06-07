@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ddimitroff.projects.dwallet.rest.token.TokenRO;
 import com.ddimitroff.projects.dwallet.rest.user.UserRO;
 
 public class DWalletActivity extends Activity {
@@ -28,11 +29,24 @@ public class DWalletActivity extends Activity {
 			Button btnLogin = (Button) findViewById(R.id.btn_login);
 			btnLogin.setOnClickListener(new View.OnClickListener() {
 
-				@Override
 				public void onClick(View view) {
-					UserRO user = new UserRO(txtEmail.getText().toString(), txtPassword.getText().toString());
-					new DWalletTask(DWalletActivity.this).execute(user);
+					UserRO user = new UserRO(txtEmail.getText().toString(), txtPassword.getText().toString(), 0, 0);
+					new DWalletLoginTask(DWalletActivity.this).execute(user);
 					// Log.i(DWALLET_ACTIVITY_TAG, "token: " + token.getTokenId());
+				}
+
+			});
+
+			Button btnLogout = (Button) findViewById(R.id.btn_logout);
+			btnLogout.setOnClickListener(new View.OnClickListener() {
+
+				public void onClick(View view) {
+					TokenRO token = DWalletAndroidSession.get().getToken();
+					if (null != token) {
+						new DWalletLogoutTask(DWalletActivity.this).execute(token);
+					} else {
+						makeToast(R.string.no_token);
+					}
 				}
 
 			});
