@@ -85,7 +85,7 @@ public class DWalletRestClient {
       HttpResponse response = httpclient.execute(post);
       int responseCode = response.getStatusLine().getStatusCode();
       if (HttpStatus.SC_OK == responseCode) {
-        Log.e(TAG, "user successfully registered");
+        Log.i(TAG, "user successfully registered");
         return true;
       } else {
         Log.e(TAG, "Error response code: " + responseCode);

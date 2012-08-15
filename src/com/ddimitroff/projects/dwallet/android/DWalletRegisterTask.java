@@ -3,6 +3,8 @@ package com.ddimitroff.projects.dwallet.android;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -20,7 +22,14 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
     this.context = ctx;
     alert = new AlertDialog.Builder(context);
     alert.setTitle(R.string.app_name);
-    alert.setPositiveButton(R.string.btn_ok, null);
+    alert.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+
+      public void onClick(DialogInterface dialog, int which) {
+        Intent homeIntent = new Intent(context, DWalletHomeActivity.class);
+        context.startActivity(homeIntent);
+      }
+
+    });
   }
 
   @Override
@@ -44,9 +53,9 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
   }
 
   @Override
-  protected void onPostExecute(Boolean successLogout) {
+  protected void onPostExecute(Boolean successRegister) {
     dialog.dismiss();
-    if (successLogout) {
+    if (successRegister) {
       alert.setMessage("You have successfully registered new user.");
     } else {
       alert.setMessage("Unable to register new user. Please check the logs.");
