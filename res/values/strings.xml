@@ -16,4 +16,14 @@
     <string name="lbl_register">Register new account for d-wallet</string>
     <string name="msg_register_fields_not_valid">Invalid data provided for register fields</string>
 
+    <string-array name="cash_flow_types_array">
+        <item>Profit</item>
+        <item>Cost</item>
+    </string-array>
+    <string-array name="cash_flow_currency_types_array">
+        <item>BGN</item>
+        <item>USD</item>
+        <item>EUR</item>
+    </string-array>
+
 </resources>

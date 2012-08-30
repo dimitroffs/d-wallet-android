@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lbl_cash_flow_types"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash flow type" />
+
+        <Spinner
+            android:id="@+id/spinner_cash_flow_types"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/lbl_cash_flow_currency_types"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash flow currency type" />
+
+        <Spinner
+            android:id="@+id/spinner_cash_flow_currency_types"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/lbl_cash_flow_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash flow sum" />
+
+        <EditText
+            android:id="@+id/txt_cash_flow_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btn_cash_flow_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/btn_cash_flow_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+
+    </LinearLayout>
+
+</ScrollView>

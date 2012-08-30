@@ -3,6 +3,8 @@ package com.ddimitroff.projects.dwallet.android;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -21,7 +23,14 @@ public class DWalletLoginTask extends AsyncTask<UserRO, Void, TokenRO> {
 		this.context = ctx;
 		alert = new AlertDialog.Builder(context);
 		alert.setTitle(R.string.app_name);
-		alert.setPositiveButton(R.string.btn_ok, null);
+		alert.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+
+      public void onClick(DialogInterface dialog, int which) {
+        Intent postRecordIntent = new Intent(context, DWalletPostCashRecordActivity.class);
+        context.startActivity(postRecordIntent);
+      }
+
+    });
 	}
 
 	@Override
@@ -33,7 +42,7 @@ public class DWalletLoginTask extends AsyncTask<UserRO, Void, TokenRO> {
 	@Override
 	protected TokenRO doInBackground(UserRO... user) {
 		TokenRO output = DWalletRestClient.loginUser(user[0]);
-		Log.i(TAG, output.toString());
+		//Log.i(TAG, output.toString());
 		// Log.i(TAG, "logout? " + DWalletRestClient.logoutUser(output));
 		return output;
 	}
