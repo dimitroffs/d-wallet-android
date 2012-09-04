@@ -34,7 +34,7 @@ public class DWalletAndroidUtils {
     return -1;
   }
 
-  public static int getCashFlowCurrency(String selectedItem) {
+  public static int getCashCurrency(String selectedItem) {
     if (null != selectedItem) {
       if (CASH_FLOW_CURRENCY_BGN.equals(selectedItem)) {
         return 1;
@@ -54,7 +54,7 @@ public class DWalletAndroidUtils {
     return -1;
   }
 
-  public static double getCashFlowSum(String cashFlowSum) {
+  public static double getCashSum(String cashFlowSum) {
     return Double.parseDouble(cashFlowSum);
   }
 

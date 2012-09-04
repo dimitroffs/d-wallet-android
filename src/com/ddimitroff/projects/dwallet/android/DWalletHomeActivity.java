@@ -2,65 +2,38 @@ package com.ddimitroff.projects.dwallet.android;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 
-import com.ddimitroff.projects.dwallet.rest.token.TokenRO;
-import com.ddimitroff.projects.dwallet.rest.user.UserRO;
-
-public class DWalletHomeActivity extends DWalletActivity {
+public class DWalletHomeActivity extends DWalletTabActivity {
 
   private static final String DWALLET_HOME_ACTIVITY_TAG = "D-Wallet-Home-Activity";
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (isOnline()) {
-      setContentView(R.layout.main);
+    setContentView(R.layout.home);
 
-      final TextView txtEmail = (TextView) findViewById(R.id.txtbox_email);
-      final TextView txtPassword = (TextView) findViewById(R.id.txtbox_passwd);
+    TabHost tabHost = getTabHost();
 
-      Button btnLogin = (Button) findViewById(R.id.btn_login);
-      btnLogin.setOnClickListener(new View.OnClickListener() {
+    TabSpec specHome = tabHost.newTabSpec("HOME");
+    specHome.setIndicator("HOME");
+    specHome.setContent(R.id.tab_home);
 
-        public void onClick(View view) {
-          if (validate()) {
-            UserRO user = new UserRO(txtEmail.getText().toString(), txtPassword.getText().toString(), 0, 0);
-            new DWalletLoginTask(DWalletHomeActivity.this).execute(user);
-            // Log.i(DWALLET_ACTIVITY_TAG, "token: " + token.getTokenId());
-          }
-        }
+    tabHost.addTab(specHome);
 
-      });
+    TabSpec specLogin = tabHost.newTabSpec("LOGIN");
+    specLogin.setIndicator("LOGIN");
+    Intent intentLogin = new Intent(this, DWalletLoginActivity.class);
+    specLogin.setContent(intentLogin);
 
-      Button btnRegister = (Button) findViewById(R.id.btn_reg);
-      btnRegister.setOnClickListener(new View.OnClickListener() {
+    tabHost.addTab(specLogin);
 
-        public void onClick(View view) {
-          Intent registerIntent = new Intent(DWalletHomeActivity.this, DWalletRegisterActivity.class);
-          DWalletHomeActivity.this.startActivity(registerIntent);
-        }
+    TabSpec specAbout = tabHost.newTabSpec("ABOUT");
+    specAbout.setIndicator("ABOUT");
+    specAbout.setContent(R.id.tab_about);
 
-      });
-
-      Button btnLogout = (Button) findViewById(R.id.btn_logout);
-      btnLogout.setOnClickListener(new View.OnClickListener() {
-
-        public void onClick(View view) {
-          TokenRO token = DWalletAndroidSession.get().getToken();
-          if (null != token) {
-            new DWalletLogoutTask(DWalletHomeActivity.this).execute(token);
-          } else {
-            makeToast(R.string.no_token);
-          }
-        }
-
-      });
-    } else {
-      makeToast(R.string.no_connection);
-    }
+    tabHost.addTab(specAbout);
   }
 
   @Override

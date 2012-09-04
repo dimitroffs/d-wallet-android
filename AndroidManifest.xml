@@ -23,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DWalletLoginActivity" android:label="@string/app_name" />
         <activity android:name=".DWalletRegisterActivity" android:label="@string/app_name" />
         <activity android:name=".DWalletPostCashRecordActivity" android:label="@string/app_name" />
         <activity android:name=".DWalletAddCashFlowActivity" android:label="@string/app_name" />

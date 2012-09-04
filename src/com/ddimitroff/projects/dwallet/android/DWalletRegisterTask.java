@@ -25,7 +25,7 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
     alert.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
 
       public void onClick(DialogInterface dialog, int which) {
-        Intent homeIntent = new Intent(context, DWalletHomeActivity.class);
+        Intent homeIntent = new Intent(context, DWalletLoginActivity.class);
         context.startActivity(homeIntent);
       }
 

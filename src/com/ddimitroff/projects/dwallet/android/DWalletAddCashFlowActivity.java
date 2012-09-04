@@ -47,10 +47,10 @@ public class DWalletAddCashFlowActivity extends DWalletActivity {
 
         public void onClick(View view) {
           if (validate()) {
-            int cashFlowType = DWalletAndroidUtils.getCashFlowType((String) cashFlowTypeSpinner.getSelectedItem());
-            int cashFlowCurrency = DWalletAndroidUtils.getCashFlowCurrency((String) cashFlowCurrencyTypeSpinner
+            final int cashFlowType = DWalletAndroidUtils.getCashFlowType((String) cashFlowTypeSpinner.getSelectedItem());
+            final int cashFlowCurrency = DWalletAndroidUtils.getCashCurrency((String) cashFlowCurrencyTypeSpinner
                 .getSelectedItem());
-            double cashFlowSum = DWalletAndroidUtils.getCashFlowSum(cashFlowSumView.getText().toString());
+            final double cashFlowSum = DWalletAndroidUtils.getCashSum(cashFlowSumView.getText().toString());
 
             CashFlowRO currentCashFlow = new CashFlowRO(cashFlowType, cashFlowCurrency, cashFlowSum);
 
