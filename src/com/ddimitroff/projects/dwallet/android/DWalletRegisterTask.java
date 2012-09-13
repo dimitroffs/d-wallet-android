@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -25,8 +24,9 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
     alert.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
 
       public void onClick(DialogInterface dialog, int which) {
-        Intent homeIntent = new Intent(context, DWalletLoginActivity.class);
-        context.startActivity(homeIntent);
+        DWalletRegisterActivity child = (DWalletRegisterActivity) context;
+        DWalletLoginActivity parent = (DWalletLoginActivity) child.getParent();
+        parent.finishFromChild(child);
       }
 
     });

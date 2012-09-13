@@ -20,6 +20,12 @@ public abstract class DWalletTabActivity extends TabActivity {
 
   protected abstract boolean validate();
 
+  /**
+   * A method for checking if current user is connected to Internet
+   * 
+   * @return {@code true} if it is connected to Internet, {@code false}
+   *         otherwise
+   */
   public boolean isOnline() {
     ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -29,8 +35,14 @@ public abstract class DWalletTabActivity extends TabActivity {
     return false;
   }
 
+  /**
+   * A method for writing {@link Toast} strings on the screen
+   * 
+   * @param resId
+   *          - resource id
+   */
   public void makeToast(int resId) {
     Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
   }
-  
+
 }

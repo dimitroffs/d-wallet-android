@@ -44,7 +44,8 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
 
         public void onClick(View view) {
           Intent addCashFLowIntent = new Intent(DWalletPostCashRecordActivity.this, DWalletAddCashFlowActivity.class);
-          DWalletPostCashRecordActivity.this.startActivityForResult(addCashFLowIntent, ADD_CASH_FLOW_REQUEST_CODE);
+          ((DWalletLoginActivity) getParent()).startChildActivity("DWalletAddCashFlowActivity", addCashFLowIntent);
+          //DWalletPostCashRecordActivity.this.startActivityForResult(addCashFLowIntent, ADD_CASH_FLOW_REQUEST_CODE);
         }
 
       });

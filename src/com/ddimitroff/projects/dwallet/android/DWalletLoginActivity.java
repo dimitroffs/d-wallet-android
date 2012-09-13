@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.ddimitroff.projects.dwallet.rest.token.TokenRO;
 import com.ddimitroff.projects.dwallet.rest.user.UserRO;
 
-public class DWalletLoginActivity extends DWalletActivity {
+public class DWalletLoginActivity extends DWalletTabGroupActivity {
 
   private static final String DWALLET_LOGIN_ACTIVITY_TAG = "D-Wallet-Login-Activity";
 
@@ -40,7 +40,7 @@ public class DWalletLoginActivity extends DWalletActivity {
 
         public void onClick(View view) {
           Intent registerIntent = new Intent(DWalletLoginActivity.this, DWalletRegisterActivity.class);
-          DWalletLoginActivity.this.startActivity(registerIntent);
+          startChildActivity("DWalletRegisterActivity", registerIntent); // TODO
         }
 
       });
@@ -63,8 +63,7 @@ public class DWalletLoginActivity extends DWalletActivity {
     }
   }
 
-  @Override
-  protected boolean validate() {
+  private boolean validate() {
     // TODO implement validation of fields
     return true;
   }
