@@ -35,6 +35,9 @@ public class DWalletTabGroupActivity extends ActivityGroup {
       activityIdList = new ArrayList<String>();
     }
 
+    Intent loginIntent = new Intent(DWalletTabGroupActivity.this, DWalletLoginActivity.class);
+    startChildActivity("DWalletLoginActivity", loginIntent);
+
     // set orientation for all activities
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
   }
@@ -118,7 +121,7 @@ public class DWalletTabGroupActivity extends ActivityGroup {
    */
   @Override
   public void onBackPressed() {
-    Log.i("TESTTTTTT", "size of list:" +activityIdList.size());
+    Log.i("TESTTTTTT", "size of list:" + activityIdList.size());
     int length = activityIdList.size();
     if (length > 1) {
       Activity current = getLocalActivityManager().getActivity(activityIdList.get(length - 1));

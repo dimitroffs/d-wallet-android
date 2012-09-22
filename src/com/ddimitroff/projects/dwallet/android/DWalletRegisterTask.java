@@ -25,7 +25,7 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
 
       public void onClick(DialogInterface dialog, int which) {
         DWalletRegisterActivity child = (DWalletRegisterActivity) context;
-        DWalletLoginActivity parent = (DWalletLoginActivity) child.getParent();
+        DWalletTabGroupActivity parent = (DWalletTabGroupActivity) child.getParent();
         parent.finishFromChild(child);
       }
 

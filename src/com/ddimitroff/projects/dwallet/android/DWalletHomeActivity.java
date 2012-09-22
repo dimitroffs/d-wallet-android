@@ -24,7 +24,7 @@ public class DWalletHomeActivity extends DWalletTabActivity {
 
     TabSpec specLogin = tabHost.newTabSpec("LOGIN");
     specLogin.setIndicator("LOGIN");
-    Intent intentLogin = new Intent(this, DWalletLoginActivity.class);
+    Intent intentLogin = new Intent(this, DWalletTabGroupActivity.class);
     specLogin.setContent(intentLogin);
 
     tabHost.addTab(specLogin);
