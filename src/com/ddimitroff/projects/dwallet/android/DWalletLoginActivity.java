@@ -28,7 +28,7 @@ public class DWalletLoginActivity extends DWalletActivity {
         public void onClick(View view) {
           if (validate()) {
             UserRO user = new UserRO(txtEmail.getText().toString(), txtPassword.getText().toString(), 0, 0);
-            new DWalletLoginTask(DWalletLoginActivity.this).execute(user);
+            new DWalletLoginTask(getParent()).execute(user);
             // Log.i(DWALLET_ACTIVITY_TAG, "token: " + token.getTokenId());
           }
         }
@@ -51,7 +51,7 @@ public class DWalletLoginActivity extends DWalletActivity {
         public void onClick(View view) {
           TokenRO token = DWalletAndroidSession.get().getToken();
           if (null != token) {
-            new DWalletLogoutTask(DWalletLoginActivity.this).execute(token);
+            new DWalletLogoutTask(getParent()).execute(token);
           } else {
             makeToast(R.string.no_token);
           }

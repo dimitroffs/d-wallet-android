@@ -3,6 +3,7 @@ package com.ddimitroff.projects.dwallet.android;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,7 +21,8 @@ public class DWalletAddCashFlowActivity extends DWalletActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (isOnline()) {
-      setContentView(R.layout.add_cash_flow);
+      View viewToLoad = LayoutInflater.from(getParent()).inflate(R.layout.add_cash_flow, null);
+      setContentView(viewToLoad);
 
       Resources res = getResources();
 
@@ -54,11 +56,13 @@ public class DWalletAddCashFlowActivity extends DWalletActivity {
 
             CashFlowRO currentCashFlow = new CashFlowRO(cashFlowType, cashFlowCurrency, cashFlowSum);
 
-            Intent postRecordIntent = new Intent(DWalletAddCashFlowActivity.this, DWalletPostCashRecordActivity.class);
+            Intent postRecordIntent = new Intent(getParent(), DWalletPostCashRecordActivity.class);
             postRecordIntent.putExtra(ADD_CASH_FLOW_INTENT_PARAM, currentCashFlow);
             setResult(RESULT_OK, postRecordIntent);
-            finish();
+            getParent().finishFromChild(null);
             // DWalletAddCashFlowActivity.this.startActivity(postRecordIntent);
+//            ((DWalletTabGroupActivity) getParent()).startActivityFromChild(DWalletAddCashFlowActivity.this,
+//                postRecordIntent, DWalletPostCashRecordActivity.ADD_CASH_FLOW_REQUEST_CODE);
           }
         }
 

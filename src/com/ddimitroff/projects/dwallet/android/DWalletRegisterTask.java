@@ -24,9 +24,8 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
     alert.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
 
       public void onClick(DialogInterface dialog, int which) {
-        DWalletRegisterActivity child = (DWalletRegisterActivity) context;
-        DWalletTabGroupActivity parent = (DWalletTabGroupActivity) child.getParent();
-        parent.finishFromChild(child);
+        DWalletTabGroupActivity parent = (DWalletTabGroupActivity) context;
+        parent.finishFromChild(null);
       }
 
     });

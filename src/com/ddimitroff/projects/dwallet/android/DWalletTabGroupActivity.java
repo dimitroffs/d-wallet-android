@@ -35,7 +35,7 @@ public class DWalletTabGroupActivity extends ActivityGroup {
       activityIdList = new ArrayList<String>();
     }
 
-    Intent loginIntent = new Intent(DWalletTabGroupActivity.this, DWalletLoginActivity.class);
+    Intent loginIntent = new Intent(this, DWalletLoginActivity.class);
     startChildActivity("DWalletLoginActivity", loginIntent);
 
     // set orientation for all activities

@@ -26,9 +26,8 @@ public class DWalletLoginTask extends AsyncTask<UserRO, Void, TokenRO> {
 
       public void onClick(DialogInterface dialog, int which) {
         Intent postRecordIntent = new Intent(context, DWalletPostCashRecordActivity.class);
-        DWalletLoginActivity activity = (DWalletLoginActivity) context;
-        ((DWalletTabGroupActivity) activity.getParent()).startChildActivity("DWalletPostCashRecordActivity",
-            postRecordIntent);
+        DWalletTabGroupActivity activity = (DWalletTabGroupActivity) context;
+        activity.startChildActivity("DWalletPostCashRecordActivity", postRecordIntent);
       }
 
     });

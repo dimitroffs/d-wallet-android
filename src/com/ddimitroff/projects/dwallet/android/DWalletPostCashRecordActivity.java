@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,7 +30,8 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (isOnline()) {
-      setContentView(R.layout.post_cash_record);
+      View viewToLoad = LayoutInflater.from(getParent()).inflate(R.layout.post_cash_record, null);
+      setContentView(viewToLoad);
 
       listResults = new ArrayList<String>();
 
@@ -43,9 +45,10 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
       btnAddCashFlow.setOnClickListener(new View.OnClickListener() {
 
         public void onClick(View view) {
-          Intent addCashFLowIntent = new Intent(DWalletPostCashRecordActivity.this, DWalletAddCashFlowActivity.class);
+          Intent addCashFLowIntent = new Intent(getParent(), DWalletAddCashFlowActivity.class);
           ((DWalletTabGroupActivity) getParent()).startChildActivity("DWalletAddCashFlowActivity", addCashFLowIntent);
-          //DWalletPostCashRecordActivity.this.startActivityForResult(addCashFLowIntent, ADD_CASH_FLOW_REQUEST_CODE);
+          // DWalletPostCashRecordActivity.this.startActivityForResult(addCashFLowIntent,
+          // ADD_CASH_FLOW_REQUEST_CODE);
         }
 
       });

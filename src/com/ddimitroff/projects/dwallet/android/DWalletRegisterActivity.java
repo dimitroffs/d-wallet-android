@@ -2,6 +2,7 @@ package com.ddimitroff.projects.dwallet.android;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,7 +19,8 @@ public class DWalletRegisterActivity extends DWalletActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (isOnline()) {
-      setContentView(R.layout.register);
+      View viewToLoad = LayoutInflater.from(getParent()).inflate(R.layout.register, null);
+      setContentView(viewToLoad);
 
       final TextView txtEmail = (TextView) findViewById(R.id.txtbox_email);
       final TextView txtPassword = (TextView) findViewById(R.id.txtbox_passwd);
@@ -46,7 +48,7 @@ public class DWalletRegisterActivity extends DWalletActivity {
 
             UserRO userToRegister = new UserRO(txtEmail.getText().toString(), txtPassword.getText().toString(),
                 registerCurrency, registerSum);
-            new DWalletRegisterTask(DWalletRegisterActivity.this).execute(userToRegister);
+            new DWalletRegisterTask(getParent()).execute(userToRegister);
           } else {
             makeToast(R.string.msg_register_fields_not_valid);
           }
