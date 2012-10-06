@@ -45,8 +45,8 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
       btnAddCashFlow.setOnClickListener(new View.OnClickListener() {
 
         public void onClick(View view) {
-          Intent addCashFLowIntent = new Intent(getParent(), DWalletAddCashFlowActivity.class);
-          ((DWalletTabGroupActivity) getParent()).startChildActivity("DWalletAddCashFlowActivity", addCashFLowIntent);
+          Intent addCashFLowIntent = new Intent(getParent().getApplicationContext(), DWalletAddCashFlowActivity.class);
+          ((DWalletTabGroupActivity) getParent()).startActivityForResult(addCashFLowIntent, ADD_CASH_FLOW_REQUEST_CODE);
           // DWalletPostCashRecordActivity.this.startActivityForResult(addCashFLowIntent,
           // ADD_CASH_FLOW_REQUEST_CODE);
         }
@@ -73,18 +73,15 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     super.onActivityResult(requestCode, resultCode, intent);
 
-    if (RESULT_OK == resultCode && ADD_CASH_FLOW_REQUEST_CODE == requestCode) {
-      CashFlowRO newCashFlow = (CashFlowRO) intent.getExtras().get(
-          DWalletAddCashFlowActivity.ADD_CASH_FLOW_INTENT_PARAM);
+    CashFlowRO newCashFlow = (CashFlowRO) intent.getExtras().get(DWalletAddCashFlowActivity.ADD_CASH_FLOW_INTENT_PARAM);
 
-      Log.i(DWALLET_POSTCASHRECORD_ACTIVITY_TAG, "GOTTTTTTTT ITTTTTTTTTTT" + newCashFlow.getCashFlowSum());
+    Log.i(DWALLET_POSTCASHRECORD_ACTIVITY_TAG, "GOTTTTTTTT ITTTTTTTTTTT" + newCashFlow.getCashFlowSum());
 
-      listResults.add(newCashFlow.getCashFlowType() + "-" + newCashFlow.getCashFlowSum() + "-"
-          + newCashFlow.getCashFlowCurrency());
-      listViewAdapter.notifyDataSetChanged();
+    listResults.add(newCashFlow.getCashFlowType() + "-" + newCashFlow.getCashFlowSum() + "-"
+        + newCashFlow.getCashFlowCurrency());
+    listViewAdapter.notifyDataSetChanged();
 
-      cashRecordItems.add(newCashFlow);
-    }
+    cashRecordItems.add(newCashFlow);
   }
 
   @Override

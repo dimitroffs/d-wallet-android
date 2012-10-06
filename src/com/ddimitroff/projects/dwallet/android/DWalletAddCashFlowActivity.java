@@ -21,8 +21,8 @@ public class DWalletAddCashFlowActivity extends DWalletActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (isOnline()) {
-      View viewToLoad = LayoutInflater.from(getParent()).inflate(R.layout.add_cash_flow, null);
-      setContentView(viewToLoad);
+      //View viewToLoad = LayoutInflater.from(getParent()).inflate(R.layout.add_cash_flow, null);
+      setContentView(R.layout.add_cash_flow);
 
       Resources res = getResources();
 
@@ -56,13 +56,20 @@ public class DWalletAddCashFlowActivity extends DWalletActivity {
 
             CashFlowRO currentCashFlow = new CashFlowRO(cashFlowType, cashFlowCurrency, cashFlowSum);
 
-            Intent postRecordIntent = new Intent(getParent(), DWalletPostCashRecordActivity.class);
+            Intent postRecordIntent = new Intent();
             postRecordIntent.putExtra(ADD_CASH_FLOW_INTENT_PARAM, currentCashFlow);
             setResult(RESULT_OK, postRecordIntent);
-            getParent().finishFromChild(null);
+            //getParent().finishFromChild(null);
+//finishActivity(DWalletPostCashRecordActivity.ADD_CASH_FLOW_REQUEST_CODE)
+            finish();
+            
+//            getParent().startActivityForResult(postRecordIntent,
+//                DWalletPostCashRecordActivity.ADD_CASH_FLOW_REQUEST_CODE);
             // DWalletAddCashFlowActivity.this.startActivity(postRecordIntent);
-//            ((DWalletTabGroupActivity) getParent()).startActivityFromChild(DWalletAddCashFlowActivity.this,
-//                postRecordIntent, DWalletPostCashRecordActivity.ADD_CASH_FLOW_REQUEST_CODE);
+            // ((DWalletTabGroupActivity)
+            // getParent()).startActivityFromChild(DWalletAddCashFlowActivity.this,
+            // postRecordIntent,
+            // DWalletPostCashRecordActivity.ADD_CASH_FLOW_REQUEST_CODE);
           }
         }
 
@@ -72,7 +79,7 @@ public class DWalletAddCashFlowActivity extends DWalletActivity {
       btnCancel.setOnClickListener(new View.OnClickListener() {
 
         public void onClick(View view) {
-          DWalletAddCashFlowActivity.this.finish();
+          finish();
         }
 
       });

@@ -154,4 +154,15 @@ public class DWalletTabGroupActivity extends ActivityGroup {
     Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
   }
 
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    if (Activity.RESULT_OK == resultCode && DWalletPostCashRecordActivity.ADD_CASH_FLOW_REQUEST_CODE == requestCode) {
+      DWalletPostCashRecordActivity activity = (DWalletPostCashRecordActivity) getLocalActivityManager()
+          .getCurrentActivity();
+      activity.onActivityResult(requestCode, resultCode, data);
+    }
+
+  }
+
 }
