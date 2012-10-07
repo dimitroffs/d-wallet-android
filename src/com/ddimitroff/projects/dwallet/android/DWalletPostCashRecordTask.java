@@ -6,25 +6,29 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 
-import com.ddimitroff.projects.dwallet.rest.user.UserRO;
+import com.ddimitroff.projects.dwallet.rest.cash.CashRecordRO;
 
-public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
+public class DWalletPostCashRecordTask extends AsyncTask<CashRecordRO, Void, Boolean> {
 
-  public static final String TAG = "D-Wallet-Register-Task";
+  public static final String TAG = "D-Wallet-Post-Cash-Record-Task";
 
   private ProgressDialog dialog = null;
   private Context context = null;
   private AlertDialog.Builder alert = null;
 
-  public DWalletRegisterTask(Context ctx) {
+  public DWalletPostCashRecordTask(Context ctx) {
     this.context = ctx;
     alert = new AlertDialog.Builder(context);
     alert.setTitle(R.string.app_name);
     alert.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
 
       public void onClick(DialogInterface dialog, int which) {
-        DWalletTabGroupActivity parent = (DWalletTabGroupActivity) context;
-        parent.finishFromChild(null);
+        // TODO nothing for now
+        // Intent postRecordIntent = new Intent(context,
+        // DWalletPostCashRecordActivity.class);
+        // DWalletTabGroupActivity activity = (DWalletTabGroupActivity) context;
+        // activity.startChildActivity("DWalletPostCashRecordActivity",
+        // postRecordIntent);
       }
 
     });
@@ -37,10 +41,10 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
   }
 
   @Override
-  protected Boolean doInBackground(UserRO... user) {
-    Boolean output = DWalletRestClient.registerUser(user[0]);
+  protected Boolean doInBackground(CashRecordRO... cashRecords) {
+    Boolean output = DWalletRestClient.postCashRecord(cashRecords[0]);
     // Log.i(TAG, output.toString());
-
+    // Log.i(TAG, "logout? " + DWalletRestClient.logoutUser(output));
     return output;
   }
 
@@ -51,13 +55,13 @@ public class DWalletRegisterTask extends AsyncTask<UserRO, Void, Boolean> {
   }
 
   @Override
-  protected void onPostExecute(Boolean successRegister) {
+  protected void onPostExecute(Boolean successPost) {
     dialog.dismiss();
 
-    if (successRegister) {
-      alert.setMessage("You have successfully registered new user.");
+    if (successPost) {
+      alert.setMessage("You have successfully posted cash record.");
     } else {
-      alert.setMessage("Unable to register new user. Please check the logs.");
+      alert.setMessage("Unable to post cash record. Please check the logs.");
     }
 
     alert.show();

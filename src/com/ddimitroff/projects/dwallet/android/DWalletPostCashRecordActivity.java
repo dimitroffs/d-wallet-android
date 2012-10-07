@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.ddimitroff.projects.dwallet.rest.cash.CashFlowRO;
+import com.ddimitroff.projects.dwallet.rest.cash.CashRecordRO;
+import com.ddimitroff.projects.dwallet.rest.token.TokenRO;
 
 public class DWalletPostCashRecordActivity extends DWalletActivity {
 
@@ -22,7 +24,7 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
 
   private static List<String> listResults;
 
-  private static List<CashFlowRO> cashRecordItems;
+  private static ArrayList<CashFlowRO> cashRecordItems;
 
   private ArrayAdapter<String> listViewAdapter;
 
@@ -57,10 +59,13 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
       btnPostCashRecord.setOnClickListener(new View.OnClickListener() {
 
         public void onClick(View view) {
-          // UserRO user = new UserRO(txtEmail.getText().toString(),
-          // txtPassword.getText().toString(), 0, 0);
-          // new
-          // DWalletLoginTask(DWalletPostCashRecordActivity.this).execute(user);
+          TokenRO token = DWalletAndroidSession.get().getToken();
+          if (null != token) {
+            CashRecordRO cashRecord = new CashRecordRO(token, cashRecordItems);
+            new DWalletPostCashRecordTask(getParent()).execute(cashRecord);
+          } else {
+            makeToast(R.string.no_token);
+          }
         }
 
       });
