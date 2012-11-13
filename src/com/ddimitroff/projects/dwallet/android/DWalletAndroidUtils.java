@@ -8,16 +8,22 @@ public class DWalletAndroidUtils {
   public static final String DWALLET_PROPERTY_SERVER_URL = "http://dwallet.cloudfoundry.com/rest";
   public static final String DWALLET_PROPERTY_API_KEY = "testAPIkey1";
 
+  @Deprecated
   private static final String CASH_FLOW_PROFIT = "Profit";
+  @Deprecated
   private static final String CASH_FLOW_COST = "Cost";
+  @Deprecated
   private static final String CASH_FLOW_CURRENCY_BGN = "BGN";
+  @Deprecated
   private static final String CASH_FLOW_CURRENCY_USD = "USD";
+  @Deprecated
   private static final String CASH_FLOW_CURRENCY_EUR = "EUR";
 
   public static final String convertStreamToString(InputStream is) {
     return new Scanner(is).useDelimiter("\\A").next();
   }
 
+  @Deprecated
   public static int getCashFlowType(String cashFlowType) {
     if (null != cashFlowType) {
       if (CASH_FLOW_PROFIT.equals(cashFlowType)) {
@@ -34,6 +40,7 @@ public class DWalletAndroidUtils {
     return -1;
   }
 
+  @Deprecated
   public static int getCashCurrency(String selectedItem) {
     if (null != selectedItem) {
       if (CASH_FLOW_CURRENCY_BGN.equals(selectedItem)) {

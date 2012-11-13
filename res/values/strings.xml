@@ -16,6 +16,8 @@
     <string name="lbl_confirm_password">Confirm password</string>
     <string name="lbl_register">Register new account for d-wallet</string>
     <string name="msg_register_fields_not_valid">Invalid data provided for register fields</string>
+    <string name="delete_cash_record">Delete record</string>
+    <string name="cash_record_cancel">Cancel</string>
 
     <string-array name="cash_flow_types_array">
         <item>Profit</item>
