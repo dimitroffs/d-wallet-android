@@ -45,6 +45,10 @@ public class DWalletPostCashRecordTask extends AsyncTask<CashRecordRO, Void, Boo
     Boolean output = DWalletRestClient.postCashRecord(cashRecords[0]);
     // Log.i(TAG, output.toString());
     // Log.i(TAG, "logout? " + DWalletRestClient.logoutUser(output));
+
+    // clear cash record items
+    cashRecords[0].getCashFlows().clear();
+
     return output;
   }
 

@@ -79,6 +79,10 @@ public class DWalletPostCashRecordActivity extends DWalletActivity {
           if (null != token) {
             CashRecordRO cashRecord = new CashRecordRO(token, cashRecordItems);
             new DWalletPostCashRecordTask(getParent()).execute(cashRecord);
+
+            // clear cash list view items
+            listViewAdapter.clear();
+            listViewAdapter.notifyDataSetChanged();
           } else {
             makeToast(R.string.no_token);
           }
